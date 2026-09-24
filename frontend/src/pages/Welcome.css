@@ -1,0 +1,461 @@
+/* ===========================================
+   Welcome Page — Light Editorial
+   Inspired by: Mental Health Poster Design
+   =========================================== */
+
+.welcome-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 0;
+    background: var(--clr-bg);
+}
+
+/* ── Top Nav ── */
+.w-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 60px;
+    border-bottom: 1px solid var(--clr-border);
+    flex-shrink: 0;
+}
+
+.w-nav-brand {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--clr-primary);
+}
+
+.w-nav-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clr-txt-muted);
+    border: 1px solid var(--clr-border);
+    padding: 6px 16px;
+    border-radius: 50px;
+}
+
+.w-nav-year {
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--clr-txt-muted);
+}
+
+/* ── Hero Stage ── */
+.w-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 40px;
+    gap: 0;
+    position: relative;
+}
+
+/* ── Big Words (Left + Right) ── */
+.w-word {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.w-word span {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(4.5rem, 10vw, 9.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--clr-primary);
+}
+
+.w-word-left {
+    justify-content: flex-end;
+    padding-right: 40px;
+}
+
+.w-word-right {
+    justify-content: flex-start;
+    padding-left: 40px;
+}
+
+/* ── Centre: Halo + Illustration ── */
+.w-centre {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: clamp(200px, 22vw, 340px);
+    height: clamp(200px, 22vw, 340px);
+}
+
+/* Golden circle halo */
+.w-halo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #F5D98A 0%, #D4A843 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(212, 168, 67, 0.3);
+    animation: haloBreath 5s ease-in-out infinite alternate;
+    overflow: hidden;
+    /* Crops the rectangular edges of the image */
+}
+
+@keyframes haloBreath {
+    from {
+        box-shadow: 0 20px 60px rgba(212, 168, 67, 0.3);
+    }
+
+    to {
+        box-shadow: 0 28px 80px rgba(212, 168, 67, 0.5);
+    }
+}
+
+/* SVG brain / figure inside halo / Image version */
+.w-brain-svg,
+.w-girl-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.w-girl-img {
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    /* Blends the white background into the gold halo */
+}
+
+/* Script subtitle */
+.w-script {
+    position: absolute;
+    bottom: -12%;
+    right: -35%;
+    width: 200px;
+    pointer-events: none;
+}
+
+.script-svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Decorative flowing lines */
+.deco-line {
+    position: absolute;
+    width: 160px;
+    pointer-events: none;
+}
+
+.deco-top {
+    top: -40%;
+    right: -50%;
+}
+
+.deco-bottom {
+    bottom: -30%;
+    left: -55%;
+}
+
+/* ── Bottom Info Row ── */
+.w-bottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    border-top: 1px solid var(--clr-border);
+    flex-shrink: 0;
+    gap: 40px;
+}
+
+.w-bottom-left,
+.w-bottom-right {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 140px;
+}
+
+.w-bottom-right {
+    align-items: flex-end;
+}
+
+.w-bottom-label {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clr-txt-muted);
+}
+
+.w-bottom-val {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-primary);
+}
+
+/* Consent + CTA — centre of bottom bar */
+.w-consent-inline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.w-checkbox-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-txt-muted);
+    letter-spacing: 0.02em;
+}
+
+.w-checkbox-inline input {
+    display: none;
+}
+
+.w-checkmark-inline {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1.5px solid var(--clr-txt-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.w-checkbox-inline input:checked+.w-checkmark-inline {
+    background: var(--clr-primary);
+    border-color: var(--clr-primary);
+}
+
+.w-cta {
+    padding: 14px 36px;
+    font-size: 0.82rem;
+}
+
+/* ── Clickable Terms Link ── */
+.terms-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    font-weight: 700;
+    color: var(--clr-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.terms-link:hover {
+    color: var(--clr-primary);
+}
+
+/* ── Terms Modal Overlay ── */
+.terms-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: block;
+    /* Don't use flex here, we'll center the modal itself */
+    animation: termsFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes termsFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.terms-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #FAFAF8;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index: 100000;
+}
+
+.terms-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    flex-shrink: 0;
+}
+
+.terms-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--clr-primary);
+}
+
+.terms-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--clr-txt-muted);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.terms-close:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--clr-primary);
+}
+
+.terms-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.terms-section h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--clr-accent);
+    margin-bottom: 8px;
+}
+
+.terms-section p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--clr-txt-muted);
+}
+
+.terms-section p strong {
+    color: var(--clr-primary);
+    font-weight: 700;
+}
+
+.terms-footer {
+    padding: 20px 32px;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    flex-shrink: 0;
+}
+
+/* ── Girl SVG illustration ── */
+.w-girl-svg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    z-index: 2;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+
+    .w-nav,
+    .w-bottom {
+        padding: 20px 28px;
+    }
+
+    .w-stage {
+        flex-direction: column;
+        gap: 0px;
+        padding: 20px;
+        justify-content: space-around;
+    }
+
+    .w-word-left,
+    .w-word-right {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .w-word span {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+
+    .w-centre {
+        width: 180px;
+        height: 180px;
+    }
+
+    .deco-top,
+    .deco-bottom,
+    .w-script {
+        display: none;
+    }
+
+    .w-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .w-bottom-right {
+        align-items: center;
+    }
+}
