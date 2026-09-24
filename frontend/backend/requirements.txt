@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-pydantic
-python-multipart
-# Add your model dependencies here later:
-# torch
-# transformers
-# opencv-python
-# numpy
