@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Processing.css'
+import { Client } from '@gradio/client'
 
 const STEPS = [
     { icon: '📝', label: 'Reading your PHQ-9 responses…', duration: 1800 },
@@ -39,28 +40,22 @@ export default function Processing() {
         const answers = JSON.parse(sessionStorage.getItem('phq9_answers') || '[]')
         const frames = JSON.parse(sessionStorage.getItem('facial_frames') || '[]')
 
-        // Use env variable in production (set VITE_API_URL in Vercel dashboard)
-        // Falls back to localhost:7860 for local development
-        const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:7860'
+                // Sends answers + webcam frames to the MindScan backend on Hugging Face
+        const SPACE = import.meta.env.VITE_HF_SPACE || 'anushkakathil/mindscan-api'
 
         try {
-            const response = await fetch(`${API_BASE}/api/predict`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ answers, facial_frames: frames })
+            const client = await Client.connect(SPACE)
+            const result = await client.predict('/predict', {
+                payload: JSON.stringify({ answers, facial_frames: frames })
             })
-
-            if (response.ok) {
-                const data = await response.json()
-                // API response already matches webapp schema exactly
+            const data = result.data[0]
+            if (data && !data.error) {
                 sessionStorage.setItem('results', JSON.stringify(data))
                 return
-            } else {
-                const err = await response.json().catch(() => ({}))
-                console.warn('API error:', err)
             }
+            console.warn('API error:', data?.error)
         } catch (err) {
-            console.warn('Could not reach Flask API — using simulation mode.', err)
+            console.warn('Could not reach backend — using simulation mode.', err)
         }
 
         // Fallback: derive mock result from PHQ-9 answers
